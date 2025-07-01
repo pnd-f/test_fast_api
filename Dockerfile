@@ -1,6 +1,13 @@
-FROM python:3.12.5
+FROM python:3.13.5-slim
 
-COPY . .
-RUN pip install -r requirements.txt
+RUN mkdir "code"
+WORKDIR /code
 
-CMD ["fastapi", "dev", "main.py"]
+COPY ./requirements.txt /code/requirements.txt
+
+RUN pip install --no-cache-dir --upgrade -r /code/requirements.txt
+
+COPY ./main.py /code/main.py
+
+EXPOSE 80
+CMD ["fastapi", "run", "/code/main.py", "--port", "80"]

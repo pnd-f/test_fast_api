@@ -1,14 +1,5 @@
-from typing import Union
 from fastapi import FastAPI
 from pydantic import BaseModel
-
-from datetime import datetime
-
-holiday = datetime(year=2023, month=11, day=6)
-today = datetime.today()
-if today.month == holiday.month and \
-        today.day == holiday.day:
-    print('У вас выходной!')
 
 my_app = FastAPI()
 
@@ -16,7 +7,7 @@ my_app = FastAPI()
 class Book(BaseModel):
     title: str
     price: float
-    is_offer: Union[bool, None] = None
+    is_offer: bool | None = None
 
 
 @my_app.get("/")

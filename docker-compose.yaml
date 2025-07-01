@@ -1,0 +1,21 @@
+services:
+  fast_duck:
+    image: myfastapi-fast_duck
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: redshelf2
+    ports:
+      - 80:80
+#    depends_on:
+#      - db
+
+#  db:
+#    image: postgres:15.2
+#    environment:
+#      - POSTGRES_DB=postgres
+#      - POSTGRES_USER=postgres
+#      - POSTGRES_PASSWORD=postgres
+#      - PGPORT=6000
+#    ports:
+#      - 5435:5432
