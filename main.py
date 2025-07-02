@@ -1,5 +1,6 @@
 from fastapi import FastAPI
 from pydantic import BaseModel
+from os import getenv, environ
 
 my_app = FastAPI()
 
@@ -28,3 +29,14 @@ def update_book(book_id: int, book: Book | None = None):
 @my_app.post("/books/")
 async def create_book(book: Book):
     return book
+
+
+@my_app.post("/envvars/")
+async def get_env_vars():
+    env_vars = {
+        'postgres': getenv('POSTGRES_CONNECTION'),
+        'mongo': getenv('MONGODB_CONNECTION'),
+        'redis': getenv('REDIS_CONNECTION'),
+        'all': environ
+    }
+    return env_vars
