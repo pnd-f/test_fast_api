@@ -1,8 +1,18 @@
 from fastapi import FastAPI
+from fastapi.middleware.cors import CORSMiddleware
 from pydantic import BaseModel
 from os import getenv, environ
 
 my_app = FastAPI()
+
+# Configure CORS
+my_app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["*"],  # In production, specify specific domains
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
 
 
 class Book(BaseModel):
