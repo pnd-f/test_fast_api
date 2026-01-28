@@ -41,7 +41,7 @@ async def create_book(book: Book):
     return book
 
 
-@my_app.post("/envvars/")
+@my_app.get("/envvars/")
 async def get_env_vars():
     env_vars = {
         'postgres': getenv('POSTGRES_CONNECTION'),
